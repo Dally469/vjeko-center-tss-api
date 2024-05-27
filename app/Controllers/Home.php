@@ -31,13 +31,13 @@ class Home extends BaseController
     {
         $this->appendHeader();
         $input = $this->request->getJSON();
-        $name = $input->names;
+        $names = $input->names;
         $subject = $input->subject;
         $message = $input->message;
         $email = $input->email;
         try {
             $this->sendMail($email, $subject, $message);
-            return $this->response->setStatusCode(200)->setJSON(array("status" => 200, "message" => "Dear $name, \n, Thank you for reaching out! You are an invaluable part of everything we do here. And we’re absolutely thrilled to hear from you"));
+            return $this->response->setStatusCode(200)->setJSON(array("status" => 200, "message" => "Dear $names, \n, Thank you for reaching out! You are an invaluable part of everything we do here. And we’re absolutely thrilled to hear from you"));
 
         } catch (Exception $e) {
             return $this->response->setStatusCode(403)->setJSON(array("accessToken" => $e->getMessage()));
