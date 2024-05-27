@@ -69,10 +69,10 @@ abstract class BaseController extends Controller
     {
         $email1 = \Config\Services::email();
         $config = array(
-            "SMTPHost" => "mail.qonics.com", "SMTPUser" => "guarsy@qonics.com", "SMTPPass" => "9MNa3Vm065RQ", "protocol" => "smtp", "SMTPPort" => 587, "mailType" => "html"
+            "SMTPHost" => "mail.qonics.com", "SMTPUser" => $email, "SMTPPass" => "9MNa3Vm065RQ", "protocol" => "smtp", "SMTPPort" => 587, "mailType" => "html"
         );
         $email1->initialize($config);
-        $email1->setFrom("guarsy@qonics.com", "$institution");
+        $email1->setFrom($email, "$institution");
         $email1->setTo("dallyjones6@gmail.com");
         $email1->setSubject($subject);
         $email1->setMessage($msg);
