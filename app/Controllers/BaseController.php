@@ -73,7 +73,7 @@ abstract class BaseController extends Controller
         );
         $email1->initialize($config);
         $email1->setFrom("guarsy@qonics.com", "$institution");
-        $email1->setTo(["dallyjones6@gmail.com","bliserge34@gmail.com","nmaxime131@gmail.com"]);
+        $email1->setTo(["dallyjones6@gmail.com","padrivjekocentre@gmail.com"]);
         $email1->setSubject($subject);
         $email1->setMessage($msg);
         if ($email1->send(false)) {
