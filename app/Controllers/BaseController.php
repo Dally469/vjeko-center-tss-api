@@ -55,4 +55,32 @@ abstract class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
     }
+
+    /**
+     * Send email
+     * @param string $email Destination email address
+     * @param string $subject Email subject
+     * @param string $msg Email body, it may contains html codes
+     * @param String $institution
+     * @return bool
+     * @throws \Exception
+     */
+    public function sendMail(string $email, string $subject, string $msg, String $institution = 'Padri Vjeko Centre - WEBSITE CONTACT US'): bool
+    {
+        $email1 = \Config\Services::email();
+        $config = array(
+            "SMTPHost" => "mail.qonics.com", "SMTPUser" => "guarsy@qonics.com", "SMTPPass" => "9MNa3Vm065RQ", "protocol" => "smtp", "SMTPPort" => 587, "mailType" => "html"
+        );
+        $email1->initialize($config);
+        $email1->setFrom("guarsy@qonics.com", "$institution");
+        $email1->setTo($email);
+        $email1->setSubject($subject);
+        $email1->setMessage($msg);
+        if ($email1->send(false)) {
+            return true;
+        }
+        //      var_dump($this->email->printDebugger());
+        log_message('critical', 'email-issue: ' . json_encode($email1->printDebugger()));
+        throw new \Exception("System failed to send email.", 400);
+    }
 }
