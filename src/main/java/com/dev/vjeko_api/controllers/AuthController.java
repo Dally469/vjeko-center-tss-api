@@ -1,4 +1,4 @@
-package com.dev.vjeko_api.config;
+package com.dev.vjeko_api.controllers;
 
 import com.dev.vjeko_api.custom.ApiResponse;
 import com.dev.vjeko_api.custom.ChangePasswordRequest;
