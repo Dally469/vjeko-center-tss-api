@@ -129,8 +129,7 @@ public class AuthController {
     }
 
     @GetMapping("/profile/{userId}")
-    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
-    public ResponseEntity<ApiResponse> getUserProfile(@PathVariable String userId) {
+     public ResponseEntity<ApiResponse> getUserProfile(@PathVariable String userId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || !authentication.isAuthenticated()) {

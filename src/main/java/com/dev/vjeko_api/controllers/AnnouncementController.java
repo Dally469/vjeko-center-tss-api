@@ -23,6 +23,21 @@ public class AnnouncementController {
     @Autowired
     private  AuthService authService;
 
+
+
+    @GetMapping("/latest")
+    public ResponseEntity<ApiResponse> getLatestActiveAnnouncement() {
+        try {
+            Announcement latestAnnouncement = announcementService.getLatestActiveAnnouncement();
+            return ResponseEntity.ok(
+                    new ApiResponse(HttpStatus.OK.value(), true, "Fetched latest ACTIVE announcement", latestAnnouncement)
+            );
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse(HttpStatus.NOT_FOUND.value(), false, e.getMessage()));
+        }
+    }
+
     @GetMapping
     public ResponseEntity<ApiResponse> getAllAnnouncements() {
         List<Announcement> announcements = announcementService.getAllAnnouncements();
